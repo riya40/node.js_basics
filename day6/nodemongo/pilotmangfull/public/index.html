@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Pilots records</h1>
+        <ul id = "pilotlist"></ul>
+
+        <script>
+            async function fetchPilots(){
+                try{
+                    const response = await fetch('./pilots');
+                    const pilots = await responses.json();
+                    const pilotlist=document.getElementById('pilotList');
+                    pilotlist.innerHTML='';
+                    pilots.forEach((pilot) => {
+                        const listitem = document.createElement('li');
+                        listitem.textContent=`ID : ${pilot._id},Name:${pilot.name},airlines:${pilot.airlines},email:${pilot.email}`;
+                        pilotlist.appendChild(listitem);
+                        
+                    });
+                }catch(error){
+                    console.error('error fetching pilots',error);
+                }
+            }
+            fetchPilots()
+        </script>
+    </body>
+</html>
